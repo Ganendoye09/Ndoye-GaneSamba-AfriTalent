@@ -1,80 +1,1334 @@
-/* VARIABLES /
-:root{
-    --primary:#0d6efd;
-    --dark:#212529;
-    --light:#f8f9fa;
+/* =========================================================
+   AFRITALENT — FEUILLE DE STYLE PRINCIPALE
+   Auteur : [Votre Nom]
+   Description : Styles globaux du site AfriTalent
+========================================================= */
+
+/* =========================================================
+   1. VARIABLES CSS (custom properties) — OBLIGATOIRE
+========================================================= */
+:root {
+    /* Couleurs principales */
+    --color-primary:    #F59E0B;   /* Jaune/or — couleur accent */
+    --color-dark:       #0F0F0F;   /* Noir profond — fond navbar/footer */
+    --color-bg:         #F8F9FA;   /* Gris très clair — fond général */
+    --color-white:      #FFFFFF;
+    --color-text:       #1F2937;   /* Texte principal */
+    --color-text-light: #6B7280;   /* Texte secondaire */
+
+    /* Typographie */
+    --font-title:  'Bebas Neue', sans-serif;
+    --font-body:   'Roboto', sans-serif;
+
+    /* Espacements */
+    --spacing-section: 80px;
+    --spacing-md:      40px;
+    --spacing-sm:      20px;
+
+    /* Effets */
+    --radius:      12px;
+    --radius-lg:   20px;
+    --shadow:      0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-hover:0 10px 30px rgba(0, 0, 0, 0.15);
+    --transition:  0.3s ease;
 }
 
-/ BODY /
-body{
-    font-family: Arial, sans-serif;
-    background-color: var(--light);
-    margin:0;
-    padding:0;
+/* =========================================================
+   2. RESET & BASE
+========================================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/ NAVBAR /
-.navbar{
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+html {
+    scroll-behavior: smooth;
 }
 
-/ HERO /
-.hero{
-    background:linear-gradient(to right,#0d6efd,#6610f2);
-    color:white;
-    text-align:center;
-    padding:100px 20px;
+body {
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
 }
 
-.hero h1{
-    font-size:50px;
-    font-weight:bold;
+img {
+    max-width: 100%;
+    display: block;
 }
 
-/ CARDS /
-.card{
-    border:none;
-    border-radius:15px;
-    overflow:hidden;
-    transition:0.3s;
-    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.card:hover{
-    transform:translateY(-10px);
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.card img{
-    height:250px;
-    object-fit:cover;
+/* =========================================================
+   3. TYPOGRAPHIE
+========================================================= */
+h1, h2, h3 {
+    font-family: var(--font-title);
+    line-height: 1.2;
 }
 
-/ BUTTON /
-.btn-primary{
-    border-radius:30px;
+.section-title {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    color: var(--color-text);
+    margin-bottom: 12px;
 }
 
-/ FORM /
-form{
-    background:white;
-    padding:30px;
-    border-radius:15px;
+.section-label {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 14px;
 }
 
-/ FOOTER /
-footer{
-    margin-top:50px;
-    padding:20px;
+.section-sub {
+    color: var(--color-text-light);
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
-/ RESPONSIVE */
-@media(max-width:768px){
+/* =========================================================
+   4. NAVBAR
+========================================================= */
+#mainNAV {
+    background: var(--color-dark) !important;
+    padding: 14px 0;
+    transition: var(--transition);
+}
 
-    .hero h1{
-        font-size:35px;
+/* Effet au scroll — ajouté par JavaScript */
+#mainNAV.scrolled {
+    padding: 8px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.navbar-brand img {
+    height: 48px;
+    width: auto;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    padding: 6px 12px !important;
+    transition: color var(--transition);
+}
+
+.nav-link:hover {
+    color: var(--color-primary) !important;
+}
+
+/* Bouton CTA navbar */
+.btn-outline-warning {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    border-radius: 50px;
+    padding: 6px 20px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-outline-warning:hover {
+    background: var(--color-primary);
+    color: var(--color-dark);
+}
+
+/* =========================================================
+   5. HERO
+========================================================= */
+#hero {
+    position: relative;
+    min-height: 90vh;
+    background:
+        linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(15,15,15,0.6) 100%),
+        url('../images/banner.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 100px 0 60px;
+    overflow: hidden;
+}
+
+#hero h1 {
+    font-family: var(--font-title);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    color: var(--color-white);
+    margin-bottom: 16px;
+}
+
+#hero h1 span {
+    color: var(--color-primary);
+}
+
+#hero h2 {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 32px;
+    max-width: 540px;
+}
+
+.hero-label {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+/* =========================================================
+   6. STATISTIQUES
+========================================================= */
+#statistiques {
+    background: var(--color-dark);
+    padding: 50px 0;
+}
+
+.stat-number {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =========================================================
+   7. BENTO GRID — "Comment ça marche"
+========================================================= */
+#how {
+    padding: var(--spacing-section) 0;
+    background: var(--color-white);
+}
+
+/* Grille Bento asymétrique avec CSS Grid */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 16px;
+}
+
+/* Carte large : occupe 2 colonnes */
+.bento-card.large {
+    grid-column: span 2;
+}
+
+/* Styles communs à toutes les cartes */
+.bento-card {
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.bento-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Variante accent (jaune) */
+.bento-card.accent {
+    background: var(--color-primary);
+    color: var(--color-dark);
+}
+
+/* Variante dark */
+.bento-card.dark {
+    background: var(--color-dark);
+    color: var(--color-white);
+}
+
+/* Variante light */
+.bento-card.light {
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: 1px solid #E5E7EB;
+}
+
+.bento-step {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 12px;
+}
+
+.bento-icon {
+    font-size: 2.5rem;
+    margin-bottom: 14px;
+}
+
+.bento-title {
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.bento-desc {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   8. CATEGORIES DE SERVICES
+========================================================= */
+#services {
+    padding: var(--spacing-section) 0;
+    background: var(--color-bg);
+}
+
+.cat-card {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 28px 16px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    cursor: pointer;
+    height: 100%;
+}
+
+/* Effet hover obligatoire */
+.cat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+    background: var(--color-primary);
+}
+
+.cat-card:hover .cat-title,
+.cat-card:hover .cat-count {
+    color: var(--color-dark);
+}
+
+.cat-icon {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+}
+
+.cat-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin-bottom: 6px;
+    transition: color var(--transition);
+}
+
+.cat-count {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+    transition: color var(--transition);
+}
+
+/* =========================================================
+   9. TEMOIGNAGES
+========================================================= */
+#temoignages {
+    padding: var(--spacing-section) 0;
+    background: var(--color-white);
+}
+
+.testi-card {
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    height: 100%;
+    box-shadow: var(--shadow);
+    transition: transform var(--transition);
+}
+
+.testi-card:hover {
+    transform: translateY(-4px);
+}
+
+.testi-stars {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+}
+
+.testi-quote {
+    font-style: italic;
+    color: var(--color-text);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.testi-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.testi-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-text);
+}
+
+.testi-role {
+    font-size: 0.8rem;
+    color: var(--color-text-light);
+}
+
+/* Indicateurs carousel */
+.carousel-indicators [data-bs-target] {
+    background-color: var(--color-primary);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* =========================================================
+   10. CTA
+========================================================= */
+#cta {
+    padding: var(--spacing-section) 0;
+    background: linear-gradient(135deg, var(--color-dark) 0%, #1a1a2e 100%);
+    text-align: center;
+    color: var(--color-white);
+}
+
+#cta .section-label {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--color-primary);
+}
+
+#cta h2 {
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--color-white);
+    margin: 16px 0;
+}
+
+#cta h2 span {
+    color: var(--color-primary);
+}
+
+#cta p {
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 500px;
+    margin: 0 auto 32px;
+}
+
+.btn-cta {
+    display: inline-block;
+    background: var(--color-primary);
+    color: var(--color-dark);
+    font-weight: 700;
+    padding: 14px 36px;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+    color: var(--color-dark);
+}
+
+/* =========================================================
+   11. FOOTER
+========================================================= */
+footer {
+    background: var(--color-dark);
+    color: rgba(255, 255, 255, 0.75);
+    padding: 60px 0 0;
+}
+
+.footer-brand {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    color: var(--color-white);
+    margin-bottom: 12px;
+}
+
+.footer-brand span {
+    color: var(--color-primary);
+}
+
+.footer-desc {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.7;
+}
+
+.footer-title {
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.9rem;
+    transition: color var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--color-primary);
+}
+
+/* Icônes réseaux sociaux */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.social-icon:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-dark);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 40px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* =========================================================
+   12. PAGE FREELANCES
+========================================================= */
+
+/* En-tête de page */
+#page-header {
+    padding: 60px 0 30px;
+    background: var(--color-white);
+}
+
+/* Barre de filtres */
+#filtres {
+    padding: 24px 0 40px;
+    background: var(--color-white);
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.btn-filter {
+    background: var(--color-bg);
+    border: 2px solid #E5E7EB;
+    color: var(--color-text);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-filter:hover,
+.btn-filter.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-dark);
+}
+
+/* Section catalogue */
+#catalogue {
+    padding: 50px 0 var(--spacing-section);
+    background: var(--color-bg);
+}
+
+/* Carte freelance */
+.freelance-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform var(--transition), box-shadow var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.freelance-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Image du freelance */
+.freelance-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: top;
+    transition: transform var(--transition);
+}
+
+.freelance-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Corps de la carte */
+.freelance-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Badge catégorie */
+.freelance-badge {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.freelance-name {
+    font-family: var(--font-title);
+    font-size: 1.3rem;
+    color: var(--color-text);
+    margin-bottom: 6px;
+}
+
+.freelance-bio {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    line-height: 1.5;
+    flex: 1;
+    margin-bottom: 14px;
+}
+
+/* Tarif et étoiles */
+.freelance-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.freelance-rate {
+    font-weight: 700;
+    color: var(--color-text);
+    font-size: 1rem;
+}
+
+.freelance-stars {
+    color: var(--color-primary);
+    font-size: 0.95rem;
+}
+
+/* Bouton voir profil */
+.btn-voir-profil {
+    display: block;
+    text-align: center;
+    background: var(--color-dark);
+    color: var(--color-white);
+    padding: 10px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background var(--transition), color var(--transition);
+}
+
+.btn-voir-profil:hover {
+    background: var(--color-primary);
+    color: var(--color-dark);
+}
+
+/* Carte masquée par le filtre JS */
+.freelance-item.hidden {
+    display: none !important;
+}
+
+/* =========================================================
+   14. PAGE TARIFS
+========================================================= */
+
+#pricing {
+    padding: 50px 0 var(--spacing-section);
+    background: var(--color-bg);
+}
+
+/* Carte tarif de base */
+.pricing-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 36px 28px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    transition: transform var(--transition), box-shadow var(--transition);
+    border: 2px solid transparent;
+}
+
+.pricing-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Carte mise en avant (Pro) */
+.pricing-card.featured {
+    border-color: var(--color-primary);
+    background: var(--color-dark);
+    color: var(--color-white);
+    transform: scale(1.04);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.04) translateY(-6px);
+}
+
+/* Badge "Populaire" */
+.pricing-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: var(--color-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 18px;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
+.pricing-name {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.pricing-price {
+    font-family: var(--font-title);
+    font-size: 2.4rem;
+    color: var(--color-primary);
+    margin-bottom: 24px;
+}
+
+.pricing-price span {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    font-weight: 400;
+}
+
+.pricing-card.featured .pricing-price span {
+    color: rgba(255,255,255,0.5);
+}
+
+/* Liste des fonctionnalités */
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+    flex: 1;
+}
+
+.pricing-features li {
+    padding: 8px 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pricing-card.featured .pricing-features li {
+    border-bottom-color: rgba(255,255,255,0.1);
+}
+
+.feature-ok i { color: #22c55e; }
+.feature-no { opacity: 0.4; }
+.feature-no i { color: #ef4444; }
+
+/* Boutons des cartes */
+.pricing-btn {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    margin-top: auto;
+}
+
+.pricing-btn.solid {
+    background: var(--color-primary);
+    color: var(--color-dark);
+}
+
+.pricing-btn.solid:hover {
+    background: #d97706;
+    color: var(--color-dark);
+}
+
+.pricing-btn.outline {
+    border: 2px solid var(--color-text-light);
+    color: var(--color-text);
+}
+
+.pricing-btn.outline:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* Section FAQ */
+#faq {
+    padding: var(--spacing-section) 0;
+    background: var(--color-white);
+}
+
+.faq-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.accordion-item {
+    border: none;
+    border-bottom: 1px solid #E5E7EB;
+    background: transparent;
+}
+
+.accordion-button {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+    background: transparent;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--color-primary);
+    background: transparent;
+    box-shadow: none;
+}
+
+.accordion-button::after {
+    filter: none;
+}
+
+.accordion-body {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   15. PAGE À PROPOS
+========================================================= */
+
+/* Section histoire */
+#histoire {
+    padding: 60px 0 var(--spacing-section);
+    background: var(--color-white);
+}
+
+.about-text {
+    color: var(--color-text-light);
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.about-img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Section chiffres clés */
+#chiffres {
+    padding: var(--spacing-section) 0;
+    background: var(--color-bg);
+}
+
+/* Grand chiffre dans les bento cards */
+.stat-big {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+/* Section équipe */
+#equipe {
+    padding: var(--spacing-section) 0;
+    background: var(--color-white);
+}
+
+.team-card {
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform var(--transition), box-shadow var(--transition);
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Avatar initiales */
+.team-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin: 0 auto 16px;
+}
+
+.team-name {
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    color: var(--color-text);
+    margin-bottom: 4px;
+}
+
+.team-role {
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.team-bio {
+    font-size: 0.88rem;
+    color: var(--color-text-light);
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+.team-socials {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.team-socials a {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid #E5E7EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+
+.team-socials a:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-dark);
+}
+
+/* Section valeurs */
+#valeurs {
+    padding: var(--spacing-section) 0;
+    background: var(--color-bg);
+}
+
+.valeur-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform var(--transition), box-shadow var(--transition);
+    height: 100%;
+}
+
+.valeur-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+.valeur-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.valeur-title {
+    font-family: var(--font-title);
+    font-size: 1.4rem;
+    color: var(--color-text);
+    margin-bottom: 10px;
+}
+
+.valeur-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+/* =========================================================
+   16. PAGE CONTACT
+========================================================= */
+
+#contact-section {
+    padding: 50px 0 var(--spacing-section);
+    background: var(--color-bg);
+}
+
+/* Boîte formulaire */
+.contact-form-box {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: var(--shadow);
+}
+
+.contact-form-title {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    color: var(--color-text);
+    margin-bottom: 24px;
+}
+
+/* Champs du formulaire */
+.form-control,
+.form-select {
+    border: 2px solid #E5E7EB;
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+    outline: none;
+}
+
+/* Champ valide (ajouté par JS) */
+.form-control.is-valid,
+.form-select.is-valid {
+    border-color: #22c55e;
+}
+
+/* Champ invalide (ajouté par JS) */
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: #ef4444;
+}
+
+/* Message d'erreur sous chaque champ */
+.error-msg {
+    display: none;
+    color: #ef4444;
+    font-size: 0.82rem;
+    margin-top: 5px;
+}
+
+/* Affiché par JS quand le champ est invalide */
+.error-msg.visible {
+    display: block;
+}
+
+/* Bouton soumettre */
+.btn-submit {
+    background: var(--color-primary);
+    color: var(--color-dark);
+    border: none;
+    padding: 13px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+}
+
+/* Message de succès */
+.contact-success {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    color: #166534;
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+
+.contact-success i {
+    font-size: 1.4rem;
+    color: #22c55e;
+    flex-shrink: 0;
+}
+
+/* Boîte informations */
+.contact-info-box {
+    background: var(--color-dark);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    color: var(--color-white);
+}
+
+.contact-info-title {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    color: var(--color-white);
+    margin-bottom: 24px;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.contact-info-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-info-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(245, 158, 11, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    flex-shrink: 0;
+    font-size: 0.95rem;
+}
+
+.contact-info-item strong {
+    display: block;
+    color: var(--color-white);
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+}
+
+.contact-info-item p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.contact-info-item p a {
+    color: rgba(255, 255, 255, 0.6);
+    transition: color var(--transition);
+}
+
+.contact-info-item p a:hover {
+    color: var(--color-primary);
+}
+
+/* Carte Google Maps */
+.contact-map {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    height: 220px;
+}
+
+.contact-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* =========================================================
+   17. DARK MODE (préparé pour le JS — commit 6)
+========================================================= */
+body.dark-mode {
+    --color-bg:         #111827;
+    --color-white:      #1F2937;
+    --color-text:       #F9FAFB;
+    --color-text-light: #9CA3AF;
+}
+
+body.dark-mode footer {
+    background: #0a0a0a;
+}
+
+/* =========================================================
+   13. ANIMATIONS AU SCROLL (préparées pour le JS — commit 7)
+========================================================= */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================================
+   14. BOUTON RETOUR EN HAUT (préparé pour le JS — commit 6)
+========================================================= */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 44px;
+    height: 44px;
+    background: var(--color-primary);
+    color: var(--color-dark);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    transition: transform var(--transition);
+    z-index: 999;
+}
+
+#backToTop:hover {
+    transform: translateY(-3px);
+}
+
+/* =========================================================
+   15. RESPONSIVE DESIGN — MEDIA QUERIES
+========================================================= */
+
+/* Tablette (≤ 768px) */
+@media (max-width: 768px) {
+
+    .section-title {
+        font-size: 2rem;
     }
 
-    .card img{
-        height:200px;
+    /* Bento Grid : 2 colonnes sur tablette */
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bento-card.large {
+        grid-column: span 2;
+    }
+
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+
+    #hero h2 {
+        font-size: 1rem;
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+    }
+}
+
+/* Mobile (≤ 575px) */
+@media (max-width: 575px) {
+
+    #hero {
+        min-height: 100vh;
+        padding: 100px 0 40px;
+    }
+
+    #hero h1 {
+        font-size: 2rem;
+    }
+
+    /* Bento Grid : 1 colonne sur mobile */
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-card.large {
+        grid-column: span 1;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
     }
 }

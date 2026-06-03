@@ -4,81 +4,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AfriTalent - Acceuil</title>
+    <title>AfriTalent - Contact</title>
 
-    <!--Bootstrap 5 via CDN : feuille de style-->
+    <!-- Bootstrap 5 via CDN : feuille de style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!--Votre feuille de style personnelle-->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans+JP&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Feuille de style personnelle -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">AfriTalent</a>
-        </div>
-    </nav>
-
-    <!-- CONTACT-->
-    <main class="container mt-5">
-        <h1 class="text-center mb-4">Contactez-nous</h1>
-
-        <form>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="Nom">
+    <!-- === NAVBAR === -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" id="mainNAV">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/IYVH6890-removebg-preview.png" alt="Logo AfriTalent" width="200" height="auto">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+                    aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="freelances.html">Freelances</a></li>
+                        <li class="nav-item"><a class="nav-link" href="tarifs.html">Tarifs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">À propos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                        <li class="nav-item ms-3">
+                            <a href="#" class="btn btn-outline-warning">Rejoindre AfriTalent</a>
+                        </li>
+                    </ul>
                 </div>
+            </div>
+        </nav>
+    </header>
 
-                <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" placeholder="Prénom">
+    <main>
+
+        <!-- === EN-TÊTE PAGE === -->
+        <section id="page-header">
+            <div class="container text-center">
+                <span class="section-label">Contact</span>
+                <h1 class="section-title">Contactez-nous</h1>
+                <p class="section-sub">Une question ? Une idée ? Nous sommes à votre écoute.</p>
+            </div>
+        </section>
+
+        <!-- === FORMULAIRE + INFOS === -->
+        <section id="contact-section">
+            <div class="container">
+                <div class="row g-5">
+
+                    <!-- FORMULAIRE -->
+                    <div class="col-lg-7">
+                        <div class="contact-form-box">
+                            <h2 class="contact-form-title">Envoyez-nous un message</h2>
+
+                            <!-- Message de succès — affiché par JS après soumission -->
+                            <div id="successAlert" class="contact-success d-none" role="alert">
+                                <i class="fas fa-circle-check"></i>
+                                <div>
+                                    <strong>Message envoyé !</strong> Nous vous répondrons dans les plus brefs délais.
+                                </div>
+                            </div>
+
+                            <!-- novalidate : on gère la validation nous-mêmes en JS -->
+                            <form id="contactForm" novalidate>
+                                <div class="row g-3">
+
+                                    <!-- Prénom -->
+                                    <div class="col-md-6">
+                                        <label for="firstName" class="form-label">
+                                            Prénom <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="firstName"
+                                            placeholder="Ex : Oumar" autocomplete="given-name">
+                                        <!-- Message d'erreur affiché par JS -->
+                                        <div class="error-msg" id="firstNameError">Le prénom est requis.</div>
+                                    </div>
+
+                                    <!-- Nom -->
+                                    <div class="col-md-6">
+                                        <label for="lastName" class="form-label">
+                                            Nom <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="lastName"
+                                            placeholder="Ex : Ndiaye" autocomplete="family-name">
+                                        <div class="error-msg" id="lastNameError">Le nom est requis.</div>
+                                    </div>
+
+                                    <!-- Email -->
+                                    <div class="col-12">
+                                        <label for="email" class="form-label">
+                                            Adresse email <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="email" class="form-control" id="email"
+                                            placeholder="Ex : oumar@example.com" autocomplete="email">
+                                        <div class="error-msg" id="emailError">Veuillez entrer une adresse email valide.</div>
+                                    </div>
+
+                                    <!-- Sujet (menu déroulant) -->
+                                    <div class="col-12">
+                                        <label for="subject" class="form-label">
+                                            Sujet <span class="text-danger">*</span>
+                                        </label>
+                                        <select class="form-select" id="subject">
+                                            <option value="" selected disabled>Choisissez une option...</option>
+                                            <option value="support">Support technique</option>
+                                            <option value="sales">Service commercial</option>
+                                            <option value="partnership">Partenariat</option>
+                                            <option value="other">Autre demande</option>
+                                        </select>
+                                        <div class="error-msg" id="subjectError">Veuillez sélectionner un sujet.</div>
+                                    </div>
+
+                                    <!-- Message (textarea) -->
+                                    <div class="col-12">
+                                        <label for="message" class="form-label">
+                                            Message <span class="text-danger">*</span>
+                                        </label>
+                                        <textarea class="form-control" id="message" rows="5"
+                                            placeholder="Décrivez votre demande (minimum 20 caractères)..."></textarea>
+                                        <div class="error-msg" id="messageError">Le message doit contenir au moins 20 caractères.</div>
+                                    </div>
+
+                                    <!-- Bouton soumettre -->
+                                    <div class="col-12 mt-2">
+                                        <button type="submit" class="btn-submit">
+                                            <i class="fas fa-paper-plane me-2"></i>Envoyer le message
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- INFORMATIONS DE CONTACT + CARTE -->
+                    <div class="col-lg-5 d-flex flex-column gap-4">
+
+                        <!-- Coordonnées -->
+                        <div class="contact-info-box">
+                            <h3 class="contact-info-title">Nos coordonnées</h3>
+
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <strong>Adresse</strong>
+                                    <p>Yoff Mbenguene, Dakar, Sénégal</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <strong>Téléphone</strong>
+                                    <p><a href="tel:+221780119930">+221 78 011 99 30</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <strong>Email</strong>
+                                    <p><a href="mailto:contact@afritalent.com">contact@afritalent.com</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <strong>Horaires</strong>
+                                    <p>Lundi – Vendredi : 8h – 18h</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Google Maps iframe -->
+                        <div class="contact-map">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.2222238479367!2d-17.4442!3d14.6937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDQxJzM3LjMiTiAxN8KwMjYnMzkuMSJX!5e0!3m2!1sfr!2ssn!4v1680000000000!5m2!1sfr!2ssn"
+                                title="Localisation AfriTalent sur Google Maps"
+                                style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="mb-3">
-                <input type="email" class="form-control" placeholder="Email">
-            </div>
-
-            <div class="mb-3">
-                <select class="form-control">
-                    <option>Sujet</option>
-                    <option>Freelance</option>
-                    <option>Entreprise</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <textarea class="form-control" rows="5" placeholder="Message"></textarea>
-            </div>
-
-            <button class="btn btn-primary">Envoyer</button>
-        </form>
-        <div class="mt-4 text-center">
-            <p>Email : contact@afritalent.com</p>
-            <p>Téléphone : +221 78 011 99 30</p>
-        </div>
     </main>
 
-    <!--FOOTER-->
-    <!-- FOOTER -->
-    <footer class="text-center p-3 bg-dark text-white mt-5">
-        <p>© 2026 AfriTalent</p>
+    <!-- === FOOTER === -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <!-- Col 1 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-brand">Afri<span>Talent</span></div>
+                    <p class="footer-desc">La plateforme qui connecte les talents africains aux meilleures opportunités.</p>
+                    <div class="mt-3 d-flex gap-2">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <!-- Col 2 -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="footer-title">Liens utiles</h6>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="freelances.html">Trouver un freelance</a></li>
+                        <li><a href="tarifs.html">Tarifs & abonnements</a></li>
+                        <li><a href="about.html">À propos de nous</a></li>
+                    </ul>
+                </div>
+                <!-- Col 3 -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="footer-title">Ressources</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog AfriTalent</a></li>
+                        <li><a href="#">Guide du freelancing</a></li>
+                        <li><a href="#">Centre d'aide (FAQ)</a></li>
+                        <li><a href="#">Conditions générales</a></li>
+                    </ul>
+                </div>
+                <!-- Col 4 -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="footer-title">Contact</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">contact@afritalent.com</a></li>
+                        <li><a href="#">+221 33 000 00 00</a></li>
+                        <li><a href="#">Dakar, Sénégal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="year"></span> AfriTalent. Tous droits réservés.</span>
+                <span>Fait avec ❤️ en Afrique</span>
+            </div>
+        </div>
     </footer>
 
-
-
-    <!--Le contenu de la page sera ajoute ici-->
-
-<body>
-
-    <!--Bootstrap 5 via CDN : script JavaScript-->
+    <!-- Bootstrap 5 via CDN : script JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!--Votre script JavaScript-->
+    <!-- Votre script JavaScript -->
     <script src="js/main.js"></script>
 
 </body>
-
 </html>

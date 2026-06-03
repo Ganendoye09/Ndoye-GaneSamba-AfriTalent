@@ -4,65 +4,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AfriTalent - Acceuil</title>
+    <title>AfriTalent - Tarifs</title>
 
-    <!--Bootstrap 5 via CDN : feuille de style-->
+    <!-- Bootstrap 5 via CDN : feuille de style -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!--Votre feuille de style personnelle-->
+    <!-- AJOUT : Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans+JP&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Feuille de style personnelle -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
- <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">AfriTalent</a>
-        </div>
-    </nav>
-
-    <!-- TARIFS-->
-    <main class="container mt-5">
-        <h1 class="text-center mb-4">Nos Tarifs</h1>
-
-                <div class=" row text-center">
-
-            <div class="col-md-4">
-                <div class="card p-3">
-                    <h3>Gratuit</h3>
-                    <p>0$/mois</p>
-                    <p>Accès limité</p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card p-3">
-                    <h3>Pro</h3>
-                    <p>20$/mois</p>
-                    <p>Accès complet</p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card p-3">
-                    <h3>Entreprise</h3>
-                    <p>50$/mois</p>
-                    <p>Support premium</p>
-                </div>
-            </div>
-
-            </div>
-    </main>
-
-    <!--Le contenu de la page sera ajoute ici-->
-
 <body>
 
-    <!--Bootstrap 5 via CDN : script JavaScript-->
+    <!-- === NAVBAR === -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" id="mainNAV">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/IYVH6890-removebg-preview.png" alt="Logo AfriTalent" width="200" height="auto">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+                    aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="freelances.html">Freelances</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="tarifs.html">Tarifs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">À propos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item ms-3">
+                            <a href="#" class="btn btn-outline-warning">Rejoindre AfriTalent</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- === EN-TÊTE PAGE === -->
+        <section id="page-header">
+            <div class="container text-center">
+                <span class="section-label">Tarification</span>
+                <h1 class="section-title">Nos plans tarifaires</h1>
+                <p class="section-sub">Choisissez le forfait qui correspond le mieux à vos ambitions.</p>
+            </div>
+        </section>
+
+        <!-- === SECTION TARIFS === -->
+        <section id="pricing">
+            <div class="container">
+                <div class="row g-4 align-items-stretch justify-content-center">
+
+                    <!-- Plan Gratuit -->
+                    <div class="col-12 col-md-4">
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3 class="pricing-name">Gratuit</h3>
+                                <div class="pricing-price">
+                                    0 F<span>/mois</span>
+                                </div>
+                            </div>
+                            <ul class="pricing-features">
+                                <li class="feature-ok"><i class="fas fa-check"></i> Création de profil</li>
+                                <li class="feature-ok"><i class="fas fa-check"></i> Accès aux missions publiques</li>
+                                <li class="feature-no"><i class="fas fa-times"></i> Mise en avant du profil</li>
+                                <li class="feature-no"><i class="fas fa-times"></i> Support prioritaire</li>
+                                <li class="feature-no"><i class="fas fa-times"></i> Badge "Profil Vérifié"</li>
+                            </ul>
+                            <a href="#" class="pricing-btn outline">Commencer gratuitement</a>
+                        </div>
+                    </div>
+
+                    <!-- Plan Pro (Recommandé) — visuellement mis en avant -->
+                    <div class="col-12 col-md-4">
+                        <div class="pricing-card featured">
+                            <!-- Badge "Populaire" obligatoire -->
+                            <div class="pricing-badge">⭐ Populaire</div>
+                            <div class="pricing-header">
+                                <h3 class="pricing-name">Pro</h3>
+                                <div class="pricing-price">
+                                    50 000 F<span>/mois</span>
+                                </div>
+                            </div>
+                            <ul class="pricing-features">
+                                <li class="feature-ok"><i class="fas fa-check"></i> Tous les avantages gratuits</li>
+                                <li class="feature-ok"><i class="fas fa-check"></i> Badge "Profil Vérifié"</li>
+                                <li class="feature-ok"><i class="fas fa-check"></i> Accès aux missions premium</li>
+                                <li class="feature-ok"><i class="fas fa-check"></i> Support client sous 24h</li>
+                                <li class="feature-ok"><i class="fas fa-check"></i> Statistiques de profil avancées</li>
+                            </ul>
+                            <a href="#" class="pricing-btn solid">Devenir Pro</a>
+                        </div>
+                    </div>
+
+                    <!-- Plan Entreprise -->
+                    <div class="col-12 col-md-4">
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3 class="pricing-name">Entreprise</h3>
+                                <div class="pricing-price">
+                                    80 000 F<span>/mois</span>
+                                </div>
+                            </div>
+                            <ul class="pricing-features">
+                                <li class="feature-ok"><i class="fas fa-check"></i> Accès multi-comptes</li>
+                                <li class="feature-ok"><i class="fas fa-check"></i> Gestionnaire de compte dédié</li>
+                                <li class="feature-ok"><i class="fas fa-check"></i> Outils avancés de facturation</li>
+                                <li class="feature-ok"><i class="fas fa-check"></i> API de recrutement personnalisée</li>
+                                <li class="feature-ok"><i class="fas fa-check"></i> Support 24h/7j</li>
+                            </ul>
+                            <a href="contact.html" class="pricing-btn outline">Contacter l'équipe</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- === FAQ === -->
+        <section id="faq">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <span class="section-label">FAQ</span>
+                    <h2 class="section-title">Questions fréquentes</h2>
+                </div>
+
+                <div class="faq-wrapper">
+                    <div class="accordion" id="faqAccordion">
+
+                        <!-- Question 1 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Puis-je changer de plan tarifaire à tout moment ?
+                                </button>
+                            </h3>
+                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Oui, tout à fait. Vous pouvez passer à une formule supérieure ou inférieure à tout
+                                    moment depuis les paramètres de votre compte. Les modifications de facturation seront
+                                    calculées au prorata.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Y a-t-il une période d'engagement minimale ?
+                                </button>
+                            </h3>
+                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Non, nos abonnements mensuels sont sans aucun engagement. Vous êtes libre d'annuler
+                                    votre abonnement à tout moment sans frais supplémentaires.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false"
+                                    aria-controls="collapseThree">
+                                    Quels sont les moyens de paiement acceptés ?
+                                </button>
+                            </h3>
+                            <div id="collapseThree" class="accordion-collapse collapse"
+                                aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Nous acceptons les principales cartes de crédit (Visa, MasterCard, American Express)
+                                    ainsi que les paiements via PayPal et Wave. Les virements bancaires sont disponibles
+                                    uniquement pour le plan Entreprise.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 4 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFour" aria-expanded="false"
+                                    aria-controls="collapseFour">
+                                    Mes données de facturation sont-elles sécurisées ?
+                                </button>
+                            </h3>
+                            <div id="collapseFour" class="accordion-collapse collapse"
+                                aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    La sécurité est notre priorité. Toutes les connexions sont chiffrées via SSL (HTTPS).
+                                    Vos données de paiement sont traitées par notre prestataire certifié PCI-DSS niveau 1,
+                                    nous ne stockons aucune information bancaire.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 5 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseFive" aria-expanded="false"
+                                    aria-controls="collapseFive">
+                                    Que se passe-t-il si je dépasse la limite de mon plan ?
+                                </button>
+                            </h3>
+                            <div id="collapseFive" class="accordion-collapse collapse"
+                                aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Si vous approchez de la limite, vous recevrez une notification par email. Votre service
+                                    ne sera pas bloqué immédiatement, mais vous devrez libérer de l'espace ou passer au
+                                    plan supérieur pour continuer à ajouter de nouveaux fichiers.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- === FOOTER === -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <!-- Col 1 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-brand">Afri<span>Talent</span></div>
+                    <p class="footer-desc">La plateforme qui connecte les talents africains aux meilleures opportunités.</p>
+                    <div class="mt-3 d-flex gap-2">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <!-- Col 2 -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="footer-title">Liens utiles</h6>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="freelances.html">Trouver un freelance</a></li>
+                        <li><a href="tarifs.html">Tarifs & abonnements</a></li>
+                        <li><a href="about.html">À propos de nous</a></li>
+                    </ul>
+                </div>
+                <!-- Col 3 -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="footer-title">Ressources</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog AfriTalent</a></li>
+                        <li><a href="#">Guide du freelancing</a></li>
+                        <li><a href="#">Centre d'aide (FAQ)</a></li>
+                        <li><a href="#">Conditions générales</a></li>
+                    </ul>
+                </div>
+                <!-- Col 4 -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="footer-title">Contact</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">contact@afritalent.com</a></li>
+                        <li><a href="#">+221 33 000 00 00</a></li>
+                        <li><a href="#">Dakar, Sénégal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© <span id="year"></span> AfriTalent. Tous droits réservés.</span>
+                <span>Fait avec ❤️ en Afrique</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 via CDN : script JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!--Votre script JavaScript-->
+    <!-- Votre script JavaScript -->
     <script src="js/main.js"></script>
 
 </body>
-
 </html>
