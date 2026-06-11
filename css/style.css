@@ -1273,22 +1273,15 @@ body.dark-mode footer {
    15. RESPONSIVE DESIGN — MEDIA QUERIES
 ========================================================= */
 
-/* Tablette (≤ 768px) */
+/* ── Tablette (≤ 768px) ── */
 @media (max-width: 768px) {
 
+    /* --- Typographie --- */
     .section-title {
         font-size: 2rem;
     }
 
-    /* Bento Grid : 2 colonnes sur tablette */
-    .bento-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .bento-card.large {
-        grid-column: span 2;
-    }
-
+    /* --- Hero --- */
     #hero h1 {
         font-size: 2.5rem;
     }
@@ -1297,24 +1290,72 @@ body.dark-mode footer {
         font-size: 1rem;
     }
 
+    /* --- Bento Grid : 2 colonnes sur tablette --- */
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bento-card.large {
+        grid-column: span 2;
+    }
+
+    /* --- Statistiques --- */
     .stat-number {
         font-size: 2.2rem;
     }
+
+    /* --- Page tarifs : annuler le scale de la carte Pro --- */
+    .pricing-card.featured {
+        transform: scale(1);
+        margin-top: 16px;
+    }
+
+    .pricing-card.featured:hover {
+        transform: translateY(-6px);
+    }
+
+    /* --- Page about : image histoire --- */
+    .about-img {
+        height: 260px;
+        margin-top: 24px;
+    }
+
+    /* --- Contact : réduire padding de la boîte formulaire --- */
+    .contact-form-box {
+        padding: 28px 20px;
+    }
 }
 
-/* Mobile (≤ 575px) */
+/* ── Mobile (≤ 575px) ── */
 @media (max-width: 575px) {
 
+    /* --- Variables : réduire les espacements de section --- */
+    :root {
+        --spacing-section: 50px;
+    }
+
+    /* --- Hero --- */
     #hero {
         min-height: 100vh;
         padding: 100px 0 40px;
+        text-align: center;
     }
 
     #hero h1 {
         font-size: 2rem;
     }
 
-    /* Bento Grid : 1 colonne sur mobile */
+    #hero h2 {
+        margin: 0 auto 24px;
+    }
+
+    /* Centrer les boutons CTA du hero */
+    #hero .d-flex {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* --- Bento Grid : 1 colonne sur mobile --- */
     .bento-grid {
         grid-template-columns: 1fr;
     }
@@ -1323,12 +1364,75 @@ body.dark-mode footer {
         grid-column: span 1;
     }
 
+    /* --- Statistiques --- */
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    /* --- Filtres freelances : wrap sur plusieurs lignes --- */
+    #filtres .d-flex {
+        flex-wrap: wrap;
+        gap: 8px !important;
+    }
+
+    .btn-filter {
+        font-size: 0.82rem;
+        padding: 6px 14px;
+    }
+
+    /* --- Page tarifs --- */
+    .pricing-card.featured {
+        transform: scale(1);
+        margin-bottom: 16px;
+    }
+
+    .pricing-card.featured:hover {
+        transform: translateY(-6px);
+    }
+
+    /* --- Page about : image histoire --- */
+    .about-img {
+        height: 220px;
+        margin-top: 20px;
+    }
+
+    /* --- Stat big (about — chiffres clés) --- */
+    .stat-big {
+        font-size: 2.2rem;
+    }
+
+    /* --- Contact : padding réduit --- */
+    .contact-form-box {
+        padding: 20px 16px;
+    }
+
+    /* contact info + map empilés, moins d'espace */
+    .contact-info-box {
+        padding: 24px 20px;
+    }
+
+    .contact-map {
+        height: 180px;
+    }
+
+    /* --- Footer --- */
     .footer-bottom {
         flex-direction: column;
         text-align: center;
     }
 
-    .stat-number {
-        font-size: 1.8rem;
+    /* Centrer les icônes réseaux sociaux du footer */
+    .footer-brand,
+    .footer-desc {
+        text-align: center;
+    }
+
+    footer .d-flex.gap-2 {
+        justify-content: center;
+    }
+
+    /* --- Navbar : logo légèrement plus petit --- */
+    .navbar-brand img {
+        height: 38px;
     }
 }
