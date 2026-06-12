@@ -127,7 +127,167 @@ setTimeout(function () {
 
 
 /* =========================================================
-   6. DARK MODE / LIGHT MODE
+   6. FILTRAGE DYNAMIQUE DES FREELANCES
+   Les cartes se filtrent par catégorie sans rechargement
+   Uniquement sur la page freelances.html
+========================================================= */
+
+const boutonsFiltres = document.querySelectorAll('.btn-filter');
+const cartesFreelances = document.querySelectorAll('.freelance-item');
+const noResults = document.getElementById('noResults');
+
+if (boutonsFiltres.length > 0) {
+
+    boutonsFiltres.forEach(function (bouton) {
+
+        bouton.addEventListener('click', function () {
+
+            // Retirer la classe active de tous les boutons
+            boutonsFiltres.forEach(function (btn) {
+                btn.classList.remove('active');
+            });
+
+            // Ajouter la classe active au bouton cliqué
+            bouton.classList.add('active');
+
+            // Récupérer la valeur du filtre sélectionné
+            const filtre = bouton.getAttribute('data-filter');
+
+            let nbVisible = 0;
+
+            // Afficher ou masquer chaque carte selon la catégorie
+            cartesFreelances.forEach(function (carte) {
+                const categorie = carte.getAttribute('data-category');
+
+                if (filtre === 'all' || categorie === filtre) {
+                    // La carte correspond au filtre : on l'affiche
+                    carte.classList.remove('hidden');
+                    nbVisible++;
+                } else {
+                    // La carte ne correspond pas : on la masque
+                    carte.classList.add('hidden');
+                }
+            });
+
+            // Afficher le message "aucun résultat" si aucune carte visible
+            if (noResults) {
+                noResults.style.display = nbVisible === 0 ? 'block' : 'none';
+            }
+        });
+    });
+}
+
+
+/* =========================================================
+   7. VALIDATION DU FORMULAIRE DE CONTACT
+   Validation complète côté client avec retour visuel
+   Uniquement sur la page contact.html
+========================================================= */
+
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+
+    // Regex pour vérifier le format d'un email
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Fonction utilitaire : afficher une erreur sur un champ
+    function afficherErreur(champId, erreurId) {
+        const champ = document.getElementById(champId);
+        const erreur = document.getElementById(erreurId);
+        champ.classList.remove('is-valid');
+        champ.classList.add('is-invalid');
+        erreur.classList.add('visible');
+    }
+
+    // Fonction utilitaire : marquer un champ comme valide
+    function afficherSucces(champId, erreurId) {
+        const champ = document.getElementById(champId);
+        const erreur = document.getElementById(erreurId);
+        champ.classList.remove('is-invalid');
+        champ.classList.add('is-valid');
+        erreur.classList.remove('visible');
+    }
+
+    // Écouter la soumission du formulaire
+    contactForm.addEventListener('submit', function (e) {
+        // Empêcher l'envoi réel du formulaire
+        e.preventDefault();
+
+        // Récupérer les valeurs de chaque champ
+        const prenom  = document.getElementById('firstName').value.trim();
+        const nom     = document.getElementById('lastName').value.trim();
+        const email   = document.getElementById('email').value.trim();
+        const sujet   = document.getElementById('subject').value;
+        const message = document.getElementById('message').value.trim();
+
+        let formulaireValide = true;
+
+        // Vérification du prénom
+        if (prenom === '') {
+            afficherErreur('firstName', 'firstNameError');
+            formulaireValide = false;
+        } else {
+            afficherSucces('firstName', 'firstNameError');
+        }
+
+        // Vérification du nom
+        if (nom === '') {
+            afficherErreur('lastName', 'lastNameError');
+            formulaireValide = false;
+        } else {
+            afficherSucces('lastName', 'lastNameError');
+        }
+
+        // Vérification de l'email avec regex
+        if (email === '' || !regexEmail.test(email)) {
+            afficherErreur('email', 'emailError');
+            formulaireValide = false;
+        } else {
+            afficherSucces('email', 'emailError');
+        }
+
+        // Vérification du sujet (menu déroulant)
+        if (sujet === '') {
+            afficherErreur('subject', 'subjectError');
+            formulaireValide = false;
+        } else {
+            afficherSucces('subject', 'subjectError');
+        }
+
+        // Vérification du message (minimum 20 caractères)
+        if (message.length < 20) {
+            afficherErreur('message', 'messageError');
+            formulaireValide = false;
+        } else {
+            afficherSucces('message', 'messageError');
+        }
+
+        // Si tout est valide : afficher le message de succès et réinitialiser
+        if (formulaireValide) {
+            const successAlert = document.getElementById('successAlert');
+            successAlert.classList.remove('d-none');
+
+            // Remonter en haut du formulaire pour voir le message de succès
+            successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Réinitialiser le formulaire après 3 secondes
+            setTimeout(function () {
+                contactForm.reset();
+                successAlert.classList.add('d-none');
+
+                // Retirer les classes de validation
+                document.querySelectorAll('.form-control, .form-select').forEach(function (champ) {
+                    champ.classList.remove('is-valid', 'is-invalid');
+                });
+            }, 3000);
+        }
+    });
+}
+
+
+/* =========================================================
+   8. DARK MODE / LIGHT MODE
    Toggle dans la navbar — choix sauvegardé dans localStorage
    pour persister entre les pages
 ========================================================= */
